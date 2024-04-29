@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
 	grid-template-columns: 400px 400px;
 	grid-template-rows: auto;
 	grid-gap: 50px 50px;
+	padding: 2.4rem;
 	min-height: 100vh;
 `;
 

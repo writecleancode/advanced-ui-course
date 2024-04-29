@@ -1,3 +1,5 @@
+import { ForwardedRef } from "react";
+
 export type beerType = {
 	id: number;
 	name: string;
@@ -74,9 +76,6 @@ export type fetchBeersType = (page?: number) => Promise<{
 }>;
 
 export type BeerProps = {
-	beer: {
-		name: string;
-		image_url: string;
-		abv: string;
-	};
+	beer: beerType;
+	ref: ForwardedRef<any>;
 };

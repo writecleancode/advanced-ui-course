@@ -25,16 +25,13 @@ const NavListItem = styled.li`
 	margin: 10px 0;
 `;
 
-const activeClassName = 'selected';
-const StyledNavLink = styled(NavLink).attrs({
-	// activeClassName,
-})`
+const StyledNavLink = styled(NavLink)`
 	font-family: 'IBM Plex Mono', monospace;
 	color: black;
 	font-size: 1.4rem;
 	text-decoration: none;
 
-	&.${activeClassName} {
+	&.active {
 		font-weight: bold;
 	}
 `;
