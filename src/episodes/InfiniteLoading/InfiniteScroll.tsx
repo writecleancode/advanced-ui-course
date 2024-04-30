@@ -6,7 +6,7 @@ import { BeerProps, PageType, beerType, fetchBeersType } from './types';
 
 const fetchBeers: fetchBeersType = (page = 1) => {
 	const { items, ...pageInfo } = paginate.paginate(data, page, 6);
-	return new Promise(resolve => setTimeout(() => resolve({ items, page: pageInfo }), 250));
+	return new Promise(resolve => setTimeout(() => resolve({ items, page: pageInfo }), 2500));
 };
 
 export const Beer = forwardRef(({ beer: { name, image_url: ImageUrl, abv } }, ref: BeerProps) => {
@@ -24,17 +24,20 @@ export const Beer = forwardRef(({ beer: { name, image_url: ImageUrl, abv } }, re
 export const InfiniteScroll = () => {
 	const [beers, setBeers] = useState<never[] | beerType[]>([]);
 	const [currentPage, setCurrentPage] = useState<null | PageType>(null);
+	const [isLoading, setLoadingState] = useState(false);
 	const lastBeerRef = useRef(null);
 	const observer = useRef<null | IntersectionObserver>(null);
 
 	const loadMoreBeers = useCallback(() => {
-		if (!currentPage || !currentPage.next) return;
+		if (!currentPage || !currentPage.next || isLoading) return;
+		setLoadingState(true);
 
 		fetchBeers(currentPage?.next).then(res => {
 			setBeers(prevBeers => [...prevBeers, ...res.items]);
 			setCurrentPage(res.page);
+			setLoadingState(false);
 		});
-	}, [currentPage]);
+	}, [currentPage, isLoading]);
 
 	useEffect(() => {
 		fetchBeers().then(res => {
@@ -76,6 +79,7 @@ export const InfiniteScroll = () => {
 					)
 				)}
 			</Wrapper>
+			{isLoading ? <h1>Loading!!!!!</h1> : null}
 		</>
 	);
 };
