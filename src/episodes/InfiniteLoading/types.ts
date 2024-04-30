@@ -1,4 +1,4 @@
-import { ForwardedRef } from "react";
+import { ForwardedRef } from 'react';
 
 export type beerType = {
 	id: number;
@@ -64,10 +64,11 @@ export type beerType = {
 };
 
 export type PageType = {
+	prev?: number;
+	next?: number;
 	current: number;
 	first: number;
 	last: number;
-	next: number;
 };
 
 export type fetchBeersType = (page?: number) => Promise<{
