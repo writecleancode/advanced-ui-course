@@ -1,8 +1,9 @@
 import { GlobalStyle } from './assets/styles/GlobalStyle';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
-import { InfiniteScroll } from './episodes/InfiniteLoading/InfiniteScroll';
 import { Welcome } from './components/Welcome';
+import { InfiniteScroll } from './episodes/InfiniteLoading/InfiniteScroll';
+import { AccordionFaq } from './episodes/AccordionFaq/AccordionFaq';
 
 function App() {
 	return (
@@ -13,6 +14,7 @@ function App() {
 				<Routes>
 					<Route path='/' element={<Welcome />} />
 					<Route path='/infinite-scroll' element={<InfiniteScroll />} />
+					<Route path='/accordion-faq' element={<AccordionFaq />} />
 				</Routes>
 			</Router>
 		</>
