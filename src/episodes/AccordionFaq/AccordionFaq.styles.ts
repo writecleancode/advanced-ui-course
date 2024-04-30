@@ -71,11 +71,11 @@ export const StyledDetails = styled.details`
 		line-height: 1.5;
 		transform: scaleY(0);
 		transform-origin: 0 0;
-		animation: 0.5s ease-in-out 1 forwards ${showBox};
+		animation: 0.3s ease-in-out 1 forwards ${showBox};
 
 		p {
 			opacity: 0;
-			animation: 0.3s 0.6s ease-in 1 forwards ${showContent};
+			animation: 0.35s 0.2s ease-in 1 forwards ${showContent};
 		}
 	}
 
