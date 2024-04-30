@@ -1,12 +1,12 @@
 import { forwardRef, useCallback, useEffect, useRef, useState } from 'react';
 import * as paginate from 'paginatejson';
 import data from './beers.json';
-import { ItemWrapper, Wrapper } from './InfiniteScroll.styles';
+import { Bubble, Bubbles, ItemWrapper, LoaderWrapper, Wrapper } from './InfiniteScroll.styles';
 import { BeerProps, PageType, beerType, fetchBeersType } from './types';
 
 const fetchBeers: fetchBeersType = (page = 1) => {
 	const { items, ...pageInfo } = paginate.paginate(data, page, 6);
-	return new Promise(resolve => setTimeout(() => resolve({ items, page: pageInfo }), 2500));
+	return new Promise(resolve => setTimeout(() => resolve({ items, page: pageInfo }), 3000));
 };
 
 export const Beer = forwardRef(({ beer: { name, image_url: ImageUrl, abv } }, ref: BeerProps) => {
@@ -20,6 +20,19 @@ export const Beer = forwardRef(({ beer: { name, image_url: ImageUrl, abv } }, re
 		</ItemWrapper>
 	);
 });
+
+const Loader = () => (
+	<LoaderWrapper>
+		<Bubbles>
+			<Bubble />
+			<Bubble />
+			<Bubble />
+			<Bubble />
+			<Bubble />
+		</Bubbles>
+		<p>More beers coming in...</p>
+	</LoaderWrapper>
+);
 
 export const InfiniteScroll = () => {
 	const [beers, setBeers] = useState<never[] | beerType[]>([]);
@@ -79,7 +92,7 @@ export const InfiniteScroll = () => {
 					)
 				)}
 			</Wrapper>
-			{isLoading ? <h1>Loading!!!!!</h1> : null}
+			{isLoading ? <Loader /> : null}
 		</>
 	);
 };
